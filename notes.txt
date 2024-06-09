@@ -23,3 +23,13 @@ Object.freeze is use to make a property readonly
 5) install dotenv and @types/dotenv as dev dependency
 
 import config from .env in config.ts and run it in that file after that use config.port to access port
+
+6) use mongoose and its @types
+
+7) use mongose . connect to connect and mongoose .connection.on to dis play successfully connection message use connected and error
+
+use process.exit(1) in catch on databse 
+
+import in server and call/run
+
+past mongoose.connected.on on top followed by await mongoose.connect
