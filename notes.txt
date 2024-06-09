@@ -18,3 +18,8 @@
  //use routes in app
 .use is used for middlewares .get is default methoud used to get date to client, .listen is used to listen on port boyh takes a value and a callback
 
+Object.freeze is use to make a property readonly
+
+5) install dotenv and @types/dotenv as dev dependency
+
+import config from .env in config.ts and run it in that file after that use config.port to access port
