@@ -1,0 +1,7 @@
+1) use npm init to create a node project
+2) install this
+ npm install -D typescript nodemon ts-node @type/node
+
+ 3) npx tsc -- init tsc is typescript coompiler
+
+ 4)craete .gitignore
