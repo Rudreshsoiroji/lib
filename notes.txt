@@ -33,3 +33,12 @@ use process.exit(1) in catch on databse
 import in server and call/run
 
 past mongoose.connected.on on top followed by await mongoose.connect
+
+8) use error handler client --> router --> middlewear --> request handle --> global error handler it ahs 4 parameters err, req, res, next
+
+use npm i http-errors to craete http errors
+
+
+in eroor use .status and in json send message and stack stack should be optional show only if in dev mode
+
+throw new error and createhttperror is used to create error
