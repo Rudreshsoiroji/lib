@@ -9,3 +9,5 @@
  // nodemod restarts the server as soon as something changes
 
  add eslient to Find and fix problems in your JavaScript code (use in all codeS)
+
+ 3) create a .prettierrc.json file for consistensy 
