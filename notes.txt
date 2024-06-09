@@ -5,3 +5,7 @@
  3) npx tsc -- init tsc is typescript coompiler
 
  4)craete .gitignore
+
+ // nodemod restarts the server as soon as something changes
+
+ add eslient to Find and fix problems in your JavaScript code (use in all codeS)
