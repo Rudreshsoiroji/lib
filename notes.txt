@@ -11,3 +11,10 @@
  add eslient to Find and fix problems in your JavaScript code (use in all codeS)
 
  3) create a .prettierrc.json file for consistensy 
+
+ 4) install express and its @types/express which should be a dv dependency
+
+ // set up express in src/app.ts
+ //use routes in app
+.use is used for middlewares .get is default methoud used to get date to client, .listen is used to listen on port boyh takes a value and a callback
+
