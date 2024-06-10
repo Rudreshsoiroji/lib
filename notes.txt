@@ -42,3 +42,13 @@ use npm i http-errors to craete http errors
 in eroor use .status and in json send message and stack stack should be optional show only if in dev mode
 
 throw new error and createhttperror is used to create error
+
+
+craete routes using express.router
+
+to reqister a user 
+a)// validate the user
+b) process
+c) return
+
+add express.json() to activate json parsor use in app.use()
