@@ -78,3 +78,10 @@ writes controller
 craete models and types
 
 use mongoose.schema.type.objectid to connect 2 schemas
+
+use form data not json since we send file
+us multer
+
+multer is a middle so it goes in route middle of routh and controller
+
+dest: path.resolve(__dirname,"../../public/data/upload")  in multer
