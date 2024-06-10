@@ -87,3 +87,6 @@ multer is a middle so it goes in route middle of routh and controller
 dest: path.resolve(__dirname,"../../public/data/upload")  in multer
 
 cloudanary by default accepts image s and vides so when apploading pdf use resource_type: "raw"
+multer goes into route cloudanary goes in to controllers
+
+to delelte a file use fs.promise.unlinl make sure to await
