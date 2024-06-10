@@ -4,6 +4,7 @@ import path from "node:path";
 import createHttpError from "http-errors";
 import bookModel from "./bookModel";
 import  fs  from "node:fs";
+import { AuthReq } from "../middleware/autanticate";
 
 const createBook = async   (req: Request ,res: Response,next:NextFunction) => {
   
@@ -59,11 +60,11 @@ try {
 }
 
 //craete a model in database
-
+const _req = req as AuthReq;
     
    const newBook = await bookModel.create({
     
-        author:"66666978d8337d9bd1c45ee4",
+        author:_req.userId,
         coverImage: uploadResult.secure_url,
         file: fileUploadResult.secure_url,
         genre,
