@@ -61,3 +61,5 @@ use findone() to check uniqueness of email it returns either an document or null
 
 hash the password
 use bcrypt
+
+use tokens jwt token has {sub:}payload is usually _id secret key and expires in
