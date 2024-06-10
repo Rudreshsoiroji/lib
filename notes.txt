@@ -90,3 +90,8 @@ cloudanary by default accepts image s and vides so when apploading pdf use resou
 multer goes into route cloudanary goes in to controllers
 
 to delelte a file use fs.promise.unlinl make sure to await
+
+/////////////////////////////
+a) get the token from header and check if no token id available
+b) pardser the toke seperate bearer from the token using split(" ")[1]
+c) decode the token using veryfy(parsedTokeb, jwtSecret)
