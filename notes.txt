@@ -65,3 +65,4 @@ use bcrypt
 use tokens jwt token has {sub:}payload is usually _id secret key and expires in
 201 is the ststus code for resource created
 
+match user for login and compare password

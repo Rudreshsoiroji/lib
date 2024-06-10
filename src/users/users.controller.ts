@@ -63,7 +63,32 @@ try {
 }
 
 const userLogin = async(req:Request,res:Response,next:NextFunction) =>{
-    res.json({message:"ok"})
+    //validate
+const {email, password } = req.body
+if(!email || !password)
+    {
+        return next(createHttpError(400, "All fields are required"))
+    }
+
+
+    
+    const user = await userModelSchems.findOne({email});
+    
+    if(!user){
+        return next(createHttpError(404,"user not found please register"))
+    }
+
+
+
+const isMatch = await bcrypt.compare(password, user.password)
+if(!isMatch){
+    return next(createHttpError(401,"password dosent match"))
+}
+
+
+const token = sign({sub:user._id}, config.jasonSecret as string , {expiresIn:"7d"});
+
+    res.json({token:token})
 
 }
 
