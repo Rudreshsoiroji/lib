@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 import { sign } from "jsonwebtoken";
 import { config } from "../config/config";
 import { Users } from "./userTypes";
-const userController = async(req: Request ,res: Response,next:NextFunction) =>{
+const createUser = async(req: Request ,res: Response,next:NextFunction) =>{
 
     const { name, email, password } = req.body;
 
@@ -53,7 +53,7 @@ try {
     const token = sign({sub:newUser._id}, config.jasonSecret as string , {expiresIn:"7d"});
     
     //response
-        res.json({
+        res.status(201).json({
            accessToken: token
         });
 } catch (error) {
@@ -62,4 +62,9 @@ try {
 }
 }
 
-export {userController}
+const userLogin = async(req:Request,res:Response,next:NextFunction) =>{
+    res.json({message:"ok"})
+
+}
+
+export {createUser, userLogin}
