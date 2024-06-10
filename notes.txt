@@ -52,3 +52,12 @@ b) process
 c) return
 
 add express.json() to activate json parsor use in app.use()
+
+
+make database calls and see if the user alreas\dy exists
+a)make schema/ models
+
+use findone() to check uniqueness of email it returns either an document or null use if ()
+
+hash the password
+use bcrypt
