@@ -76,3 +76,5 @@ crud
 craete routerfile
 writes controller
 craete models and types
+
+use mongoose.schema.type.objectid to connect 2 schemas

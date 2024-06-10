@@ -4,7 +4,7 @@ import createBook from "./book.controller";
 const bookRouter = express.Router();
 
 
-bookRouter.post("/createbook", createBook );
+bookRouter.post("/", createBook );
 
 export default bookRouter;
 
