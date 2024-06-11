@@ -8,7 +8,7 @@ const app = express();
 
 app.use(cors({
 
-    origin:config.frountend_url;
+    origin:config.frountend_url,
 }
     
 ))
