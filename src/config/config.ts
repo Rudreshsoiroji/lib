@@ -9,7 +9,8 @@ const _config = {
     jasonSecret: process.env.JSONSECRET,
     cloud_name: process.env.CLOUDANARY_NAME,
     api_key:process.env.CLOUDANARY_API_KEY , 
-    api_secret: process.env.CLOUDANARY_API_SECRET, 
+    api_secret: process.env.CLOUDANARY_API_SECRET,
+    frountend_url: process.env.FROUNTEND_URL,
 }
 
 export const config = Object.freeze(_config)
