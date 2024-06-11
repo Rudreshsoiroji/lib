@@ -95,3 +95,13 @@ to delelte a file use fs.promise.unlinl make sure to await
 a) get the token from header and check if no token id available
 b) pardser the toke seperate bearer from the token using split(" ")[1]
 c) decode the token using veryfy(parsedTokeb, jwtSecret)
+
+
+////////////////////////////////////////
+
+use pathch to update the books
+same code but use model.find and update one
+
+/////////////////////////////////////////////
+get 
+use model.find and use pagination to get the response dont authorise it use if necessary

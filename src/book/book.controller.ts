@@ -88,4 +88,119 @@ try {
     res.status(201).json({id: newBook._id})
 }
 
-export default createBook;
+
+const updateBook = async   (req: Request ,res: Response,next:NextFunction) => {
+
+    const {title, genre} = req.body;
+
+
+    // see if the book is present
+    const bookId = req.params.bookId;
+
+   const book = await  bookModel.findOne({_id: bookId})
+
+   if (!book) {
+    return next(createHttpError(404, "book not found"))
+    
+   }
+
+   
+   //see if the editor is authorises to edit
+   const _req = req as AuthReq;
+   if (book.author._id.toString() !== _req.userId ) {
+    return next(createHttpError(403,"ypu cannot ypdate ithers message"))
+    
+   }
+
+   //chect if image file exists
+
+   const files = req.files as {[fieldname: string]:Express.Multer.File[]};
+   let compleatedCoverInage = ""
+
+   if (files.coverImage) {
+    
+
+    const coverImageMineType = files.coverImage[0].mimetype.split("/").at(-1);
+
+      const fileName = files.coverImage[0].filename;
+
+
+
+const filePath = path.resolve(__dirname, "../../public/data/uploads", fileName);
+
+
+compleatedCoverInage = fileName;
+
+     const uploadResult = await cloudinary.uploader.upload(filePath,{
+        filename_override: compleatedCoverInage,
+        folder: "Book-covers",
+        format: coverImageMineType,
+        
+    }
+    );
+
+    compleatedCoverInage = uploadResult.secure_url;
+    await fs.promises.unlink(filePath);
+
+    
+    
+    
+   
+}
+let completeFileName ="";
+try {
+    if (files.file) {
+        const bookFileName = files.file[0].filename;
+        const bookFilePath = path.resolve(__dirname, "../../public/data/uploads", bookFileName);
+    
+        completeFileName = bookFileName;
+    
+        const fileUploadResult = await cloudinary.uploader.upload(bookFilePath,{
+            filename_override: completeFileName,
+            resource_type: "raw",
+            folder:"Book_pdf",
+            format:"pdf"
+        
+    })
+    completeFileName = fileUploadResult.secure_url;
+        await fs.promises.unlink(bookFilePath);
+    }
+} catch (error) {
+    console.log(error);
+     
+}
+
+//updatein database
+
+const bookUpdate = await bookModel.findOneAndUpdate(
+    {
+_id: bookId
+},
+{
+    genre: genre,
+    title:title,
+    coverImage: compleatedCoverInage ? compleatedCoverInage : book.coverImage,
+    file: completeFileName ? completeFileName : book.file,
+    
+},{
+    new:true
+}
+)
+res.json(bookUpdate);
+
+}
+
+
+const listBook = async (req: Request ,res: Response,next:NextFunction) =>{
+try {
+// since fing will return all use pagination
+    const book = await bookModel.find()
+    res.json(book)
+
+} catch (error) {
+    next(createHttpError(500,"Error while getting books"))
+    
+}
+}
+
+export {createBook , updateBook, listBook}
