@@ -222,5 +222,62 @@ const bookId = req.params.bookId;
     }
 
 }
+
+
+const deleteBook = async(req: Request ,res: Response,next:NextFunction) =>{
+
+
+    const bookId = req.params.bookId;
+    try {
+/// check if the book exists
+        const bookExist = await bookModel.findOne({_id:bookId});
+        if (!bookExist) {
+
+            return next(createHttpError(404,"book not found"))
+            
+        }
+
+       // check if the user is authorised to delete
+       const _req = req as AuthReq;
+       if (bookExist.author._id.toString() !== _req.userId ) {
+        return next(createHttpError(403,"youre are not authorised to update"))
+        
+       }
+
+       //detete from cloudinary
+// distroy public id which is at the end of the database files
+
+const coverFileSplit = bookExist.coverImage.split('/');
+const coverImagePublicId = coverFileSplit.at(-2) + "/" + coverFileSplit.at(-1)?.split(".").at(-2);
+
+const fileFileSplit = bookExist.file.split("/");
+const fileFilePublicId = fileFileSplit.at(-2)+ "/" + fileFileSplit.at(-1);
+
+// console.log(coverFileSplit);
+
+// console.log(coverImagePublicId);
+
+// console.log(fileFilePublicId);
+
+
+      await cloudinary.uploader.destroy(coverImagePublicId);
+      await cloudinary.uploader.destroy(fileFilePublicId,{
+        resource_type:"raw"
+      });
+
+
+      ///detete from database
+
+      await bookModel.deleteOne({_id: bookId});
+      
+        res.sendStatus(204);
+    } catch (error) {
+
+        next(createHttpError(500,"server errror"))
+        
+    }
+
+
+}
  
-export {createBook , updateBook, listBook, book}
+export {createBook , updateBook, listBook, book, deleteBook}
