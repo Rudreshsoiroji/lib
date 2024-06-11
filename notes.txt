@@ -103,5 +103,7 @@ use pathch to update the books
 same code but use model.find and update one
 
 /////////////////////////////////////////////
-get 
+get multiple bool
 use model.find and use pagination to get the response dont authorise it use if necessary
+///////////////////////////////
+get single book
